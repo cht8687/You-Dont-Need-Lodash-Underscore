@@ -1046,21 +1046,19 @@ Returns everything but the last entry of the array. Pass n to exclude the last n
 
 Removes all provided values from the given array using strict equality for comparisons, i.e. ===.
 
-  ```js
+  ```ts
   // Lodash
-  var array = [1, 2, 3, 1, 2, 3];
+  const array = [1, 2, 3, 1, 2, 3];
   _.pull(array, 2, 3);
   console.log(array)
   // output: [1, 1]
   
   // Native
-  var array = [1, 2, 3, 1, 2, 3];
-  function pull(arr, ...removeList){
-      var removeSet = new Set(removeList) 
-      return arr.filter(function(el){
-          return !removeSet.has(el)
-      })
-  }
+  const array = [1, 2, 3, 1, 2, 3];
+  const pull = <T>(sourceArray: T[], ...removeList: T[]): T[] => {
+    const removeSet = new Set(removeList);
+    return sourceArray.filter(el => !removeSet.has(el));
+  };
   console.log(pull(array, 2, 3))
   // output: [1, 1]
   ```
